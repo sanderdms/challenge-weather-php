@@ -68,37 +68,31 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
         
     }
 }
-
 ?>
 
 <html>
-
-<body>
-    <h1> Weather app</h1>
-    <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="GET">
-        <input type="text" name="city" value="<?= $inputValue ?>" placeholder="Cityname">
-        <input type="submit">
-    </form>
-    <?php if ($cityDefined) : ?>
-        <?= $msg ?>
-    <?php endif; ?>
-    <?php if ($resultsFound) : ?>
-        <p>City: <?= $data->city->name ?></p>
-        <p>Country:<?= $data->city->country?></p>
-        <?php foreach($fullData as $day => $weather) : ?>
-            <?php 
-            // get metrics from last key
-            //$metrics = $weather[count($weather)-1];
-            $metrics = array_pop($weather);
-            ?>
-
-            <h1><?=$day?></h1>
-            <p>Max temp: <?=$metrics["max"] ?></p>
-            <p>Min temp: <?=$metrics["min"] ?></p>
-
-        <?php endforeach; ?>
-
-    <?php endif; ?>
-</body>
-
+    <body>
+        <h1> Weather app</h1>
+        <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="GET">
+            <input type="text" name="city" value="<?= $inputValue ?>" placeholder="Cityname">
+            <input type="submit">
+        </form>
+        <?php if ($cityDefined) : ?>
+            <?= $msg ?>
+        <?php endif; ?>
+        <?php if ($resultsFound) : ?>
+            <p>City: <?= $data->city->name ?></p>
+            <p>Country:<?= $data->city->country?></p>
+            <?php foreach($fullData as $day => $weather) : ?>
+                <?php 
+                // get metrics from last key
+                //$metrics = $weather[count($weather)-1];
+                $metrics = array_pop($weather);
+                ?>
+                <h1><?=$day?></h1>
+                <p>Max temp: <?=$metrics["max"] ?></p>
+                <p>Min temp: <?=$metrics["min"] ?></p>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </body>
 </html>
