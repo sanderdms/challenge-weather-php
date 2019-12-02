@@ -31,11 +31,6 @@ function groupByDay($responsdata)
     return $output;
 }
 
-function array_push_assoc($array, $key, $value){
-    $array[$key] = $value;
-    return $array;
- }
-
 // $daily = array
 function addDailyMetrics($daily){
     $output = $daily;
