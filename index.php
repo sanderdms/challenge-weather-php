@@ -21,8 +21,10 @@ function groupByDay($responsdata)
     $list = $responsdata->list;
     foreach($list as $listitem){
         $day = date("N", $listitem->dt);
-        $dowMap = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-        $day = $dowMap[$day];
+
+        $dowMap = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday');
+        $day = $dowMap[$day -1];
+    
         if(!array_key_exists($day, $output)){
             $output[$day] = [];
         }
@@ -57,6 +59,27 @@ function addDailyMetrics($daily){
     return $output;
 }
 
+function generateMinMax($fullData){
+    $output = [
+        "min"=>"",
+        "max"=>""
+    ];
+   foreach($fullData as $day => $weather){
+    $metrics = array_pop($weather);
+    $output["min"] .= $metrics["min"].",";
+    $output["max"] .= $metrics["max"].",";
+   }
+return $output;
+}
+
+function generateDayLabels($dailyData){
+    $output="";
+    foreach($dailyData as $day => $data){
+        $output .= '\''.$day.'\''.',';
+    }
+    return $output;
+}
+
 if (isset($_GET['city']) && !empty($_GET['city'])) {
     $userInput = ucfirst($_GET['city']);
     //sanitize
@@ -70,6 +93,8 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
         $resultsFound = true;
         $dailyData = groupByDay($data);
         $fullData= addDailyMetrics($dailyData);
+        $chartData = generateMinMax($fullData);
+        $chartLabels = generateDayLabels($dailyData);
         
     }
 }
@@ -90,20 +115,49 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
     <?php if ($resultsFound) : ?>
         <p>City: <?= $data->city->name ?></p>
         <p>Country:<?= $data->city->country?></p>
-        <?php foreach($fullData as $day => $weather) : ?>
-            <?php 
-            // get metrics from last key
-            //$metrics = $weather[count($weather)-1];
-            $metrics = array_pop($weather);
-            ?>
 
+
+        <canvas id="chart"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+        <script>
+var ctx = document.getElementById('chart');
+
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [<?= $chartLabels ?>],
+    datasets: [
+      {
+        fill: 0,  
+        label: 'Min',
+        data: [<?=$chartData["min"] ?>],
+        backgroundColor: "blue",
+        borderColor: "blue"
+      },
+      {
+        fill: 0,  
+        label: 'Max',
+        data: [<?=$chartData["max"] ?>],
+        backgroundColor: 'red',
+        borderColor: "red"
+      }
+    ]
+  },
+  options: {
+    scales: {
+      xAxes: [{ stacked: true }],
+      yAxes: [{ stacked: false }]
+    }
+  }
+});
+
+</script>
+        <?php foreach($fullData as $day => $weather) : ?>
+            <?php $metrics = array_pop($weather);?>
             <h1><?=$day?></h1>
             <p>Max temp: <?=$metrics["max"] ?></p>
             <p>Min temp: <?=$metrics["min"] ?></p>
-
         <?php endforeach; ?>
-
     <?php endif; ?>
 </body>
-
 </html>
