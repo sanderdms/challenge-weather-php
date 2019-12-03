@@ -8,8 +8,7 @@ $resultsFound = false;
 $inputValue = "";
 
 if (isset($_GET['city']) && !empty($_GET['city'])) {
-    $userInput = ucfirst($_GET['city']);
-    //sanitize
+    $userInput = filter_var(ucfirst(str_replace(" ", "-", trim($_GET['city']))), FILTER_SANITIZE_STRING);
     $cityDefined = true;
     $inputValue = $userInput;
     $data = getWeatherData($userInput);
