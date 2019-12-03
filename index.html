@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-gray-300">
+        <div class="container mx-auto mt-5">
+                <section>
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="GET" class="w-full flex" autocomplete="off">
+                        <input type="text" name="city" value="" placeholder="Cityname"  class="text-2xl border-b-4 border-blue-800 w-10/12 py-4 px-4 text-blue-700 leading-tight focus:outline-none bg-white">
+                        <input type="submit" class="w-2/12 py-4 text-white bg-blue-800 text-3xl cursor-pointer" value="Search">
+                    </form>
+                </section>
+                <section class="bg-white p-5 flex items-center justify-center text-center mt-3" style="height: 50vh;">
+                    <div>
+                        <p>Lookup a cityname</p>
+                        <p>For example <a href="?city=gent">@gent</a> <a href="?city=london">@London</a> <a href="?city=Oslo">@Oslo</a></p>
+                    </div>
+                </section>
+                <section class="flex ">
+                    <div class="w-1/2 text-center p-2 mr-3 my-3 bg-white">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus tenetur numquam mollitia dolorum, porro placeat architecto ratione quia illum natus.</p>
+                    </div>
+                    <div class="w-1/2 text-center p-2 ml-3 my-3 bg-white">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus tenetur numquam mollitia dolorum, porro placeat architecto ratione quia illum natus.</p>
+                    </div>
+
+                   
+                </section>
+            </div>
+</body>
+</html>
