@@ -13,7 +13,7 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
     $inputValue = $userInput;
     $apiResponse = getWeatherData($userInput);
     if ($apiResponse->cod != 200) {
-        $msg = "City $userInput not found";
+        $msg = "City <b>$userInput</b> not found";
     } else {
         $msg = "Weather 5 day forecast for <b>".$apiResponse->city->name."</b>, ".$apiResponse->city->country;
         $resultsFound = true;
@@ -68,8 +68,8 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
             <div class="sm:w-full px-5">
                 <div class="flex flex-wrap -mx-5 mt-10">
 
-                <div class="w-full md:w-1/2 lg:w-2/4 p-7 px-5 mb-10">
-                        <div class="bg-white text-center shadow-lg">
+                <div class="w-full md:w-1/2 lg:w-2/4 p-7 px-5 mb-10 hidden">
+                        <div class="bg-white text-center shadow-lg p-6">
                             <div class="minmax flex flex-wrap justify-center">
                                 <div class="min w-1/2 h-32 p-5 bg-green-800 text-white text-5xl relative"><?=$metrics["min"] ?><sup class="text-lg">°C</sup>
                                     <div class="absolute bottom-0 mb-2 w-full text-center left-0 text-xs text-gray-100">minimum</div>
