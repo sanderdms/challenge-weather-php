@@ -96,7 +96,7 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
                     <!-- START FOREACH DAY -->    
                     <?php foreach($fullData as $day => $weather) : ?>
                     <?php $metrics = array_pop($weather);?>
-                    <div class="w-full md:w-1/2 lg:w-2/4 p-7 px-5 mb-10">
+                    <div class="w-full md:w-1/2 lg:w-1/3 p-7 px-5 mb-10">
                         <div class="p-10 md:p-6 bg-white text-center shadow-lg">
                             <h1 class="text-2xl my-2 font-bold leading-tight"><?=$day?></h1>
                             <div class="minmax flex justify-center my-5">
