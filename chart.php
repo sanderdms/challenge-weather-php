@@ -1,58 +1,67 @@
 <?php ?>
 
-<canvas id="chart" class="" style="z-index:-1"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
-<script>
-const ctx = document.getElementById('chart');
+<canvas id="chart"></canvas>
+                <script>
+                    const ctx = document.getElementById('chart');
 
-const myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: [<?= $chartLabels ?>],
-    datasets: [
-      {
-        pointRadius:0,
-        fill: 1,  
-        label: 'Min',
-        data: [<?=$chartData["min"] ?>],
-        backgroundColor: "blue",
-        borderColor: "blue"
-      },
-      {
-        pointRadius:0,
-        fill: 1,  
-        label: 'Max',
-        data: [<?=$chartData["max"] ?>],
-        backgroundColor: 'red',
-        borderColor: "red"
-      }
-    ]
-  },
-  options: {
-    scales: {
-      xAxes: [{ stacked: true,
-      gridLines:{
-        //drawBorder:false,
-        //display:false
-      }, ticks:{
-        //display:false
-      }}],
-      yAxes: [
-        { stacked: false,
-        ticks:{
-         // display:false 
-        },
-          gridLines: {
-            //drawBorder:false,
-          //display: false
-        } }
-        ]
-    },
-    legend:{
-      display:false
-    }
-    
-  }
-});
 
-</script>
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [<?= $chartLabels ?>],
+                            datasets: [
+                                {
+                                    pointRadius: 3,
+                                    borderWidth: 4,
+                                    pointHoverBorderWidth: 10,
+                                    fill: 0,
+                                    label: 'Min',
+                                    data: [<?=$chartData["min"] ?>],
+                                    backgroundColor: '#2c5282',
+                                    borderColor: "#2c5282"
+                                },
+                                {
+                                    pointRadius: 3,
+                                    pointHoverBorderWidth: 10,
+                                    borderWidth: 4,
+                                    fill: 0,
+                                    label: 'Max',
+                                    data: [<?=$chartData["max"] ?>],
+                                    backgroundColor: '#9b2c2c',
+                                    borderColor: "#9b2c2c"
+                                }
+                            ]
+                        },
+                        options: {
+                           maintainAspectRatio: false,
+                            scales: {
+                                xAxes: [{
+                                    stacked: true,
+                                    gridLines: {
+                                        drawBorder: false,
+                                        display: false
+                                    }, ticks: {
+                                        display: true
+                                    }
+                                }],
+                                yAxes: [
+                                    {
+                                        stacked: true,
+                                        ticks: {
+                                            display: false
+                                        },
+                                        gridLines: {
+                                            drawBorder: false,
+                                            display: false
+                                        }
+                                    }
+                                ]
+                            },
+                            legend: {
+                                display: false
+                            }
+
+                        }
+                    });
+
+                </script>

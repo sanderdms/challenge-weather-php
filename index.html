@@ -1,37 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="output.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
 
 </head>
-<body class="bg-gray-300">
-        <div class="container mx-auto mt-5">
-                <section>
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="GET" class="w-full flex" autocomplete="off">
-                        <input type="text" name="city" value="" placeholder="Cityname"  class="text-2xl border-b-4 border-blue-800 w-10/12 py-4 px-4 text-blue-700 leading-tight focus:outline-none bg-white">
-                        <input type="submit" class="w-2/12 py-4 text-white bg-blue-800 text-3xl cursor-pointer" value="Search">
-                    </form>
-                </section>
-                <section class="bg-white p-5 flex items-center justify-center text-center mt-3" style="height: 50vh;">
-                    <div>
-                        <p>Lookup a cityname</p>
-                        <p>For example <a href="?city=gent">@gent</a> <a href="?city=london">@London</a> <a href="?city=Oslo">@Oslo</a></p>
-                    </div>
-                </section>
-                <section class="flex ">
-                    <div class="w-1/2 text-center p-2 mr-3 my-3 bg-white">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus tenetur numquam mollitia dolorum, porro placeat architecto ratione quia illum natus.</p>
-                    </div>
-                    <div class="w-1/2 text-center p-2 ml-3 my-3 bg-white">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus tenetur numquam mollitia dolorum, porro placeat architecto ratione quia illum natus.</p>
-                    </div>
 
-                   
-                </section>
+<body class="bg-gray-300">
+    <div class="container mx-auto mt-5">
+        <section class="px-5">
+            <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="GET" class="w-full flex" autocomplete="off">
+                <input type="text" name="city" value="Gent" placeholder="Cityname"
+                    class="text-2xl border-b-4 border-blue-800 w-7/12 py-4 px-4 text-blue-700 leading-tight focus:outline-none bg-white lg:w-9/12">
+                <input type="submit" class="lg:w-3/12 w-5/12 py-4 text-white bg-blue-800 text-3xl cursor-pointer" value="Search">
+            </form>
+            <div class="mt-0">
+                <p class="bg-blue-800 text-white p-3 px-5 text-sm lg:inline-block mt-1 lg:mt-0">Weather 5 day forecast for <b>Ghent</b>, BE</p>
             </div>
+        </section>
+        <section class="mt-5 bg-white mx-5" style="height: 30vh;">
+            <div class="chart-container p-5" style="position: relative; height:100%; width:100%">
+                <canvas id="chart"></canvas>
+                <script>
+                    const ctx = document.getElementById('chart');
+
+
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday',],
+                            datasets: [
+                                {
+                                    pointRadius: 3,
+                                    borderWidth: 4,
+                                    pointHoverBorderWidth: 10,
+                                    fill: 0,
+                                    label: 'Min',
+                                    data: [1.28, 0.08, 5.59, 6.74, 8.25, 6.84,],
+                                    backgroundColor: '#2c5282',
+                                    borderColor: "#2c5282"
+                                },
+                                {
+                                    pointRadius: 3,
+                                    pointHoverBorderWidth: 10,
+                                    borderWidth: 4,
+                                    fill: 0,
+                                    label: 'Max',
+                                    data: [5.95, 5.53, 10.08, 9.65, 11.05, 7.38,],
+                                    backgroundColor: '#9b2c2c',
+                                    borderColor: "#9b2c2c"
+                                }
+                            ]
+                        },
+                        options: {
+                           maintainAspectRatio: false,
+                            scales: {
+                                xAxes: [{
+                                    stacked: true,
+                                    gridLines: {
+                                        drawBorder: false,
+                                        display: false
+                                    }, ticks: {
+                                        display: true
+                                    }
+                                }],
+                                yAxes: [
+                                    {
+                                        stacked: false,
+                                        ticks: {
+                                            display: false
+                                        },
+                                        gridLines: {
+                                            drawBorder: false,
+                                            display: false
+                                        }
+                                    }
+                                ]
+                            },
+                            legend: {
+                                display: false
+                            }
+
+                        }
+                    });
+
+                </script>
+
+            </div>
+        </section>
+        <section>
+                <div class="sm:w-full px-5">
+                <div class="flex flex-wrap -mx-5 mt-5">
+
+
+                        <div class="w-full md:w-1/2 lg:w-2/4 p-7 px-5 mb-3">
+                          <div class="p-10 md:p-6 bg-white text-center">
+                            <img src="svg/021-rain-1.svg" alt="" class="mx-auto w-2/5 md:w-3/4 h-20 hidden">
+                            <h1 class="text-2xl my-2 font-bold leading-tight">Monday</h1>
+                            <div class="minmax flex justify-center my-5">
+<div class="min w-1/2 h-32 p-5 bg-blue-800 text-white text-5xl relative">-2
+<div class="absolute bottom-0 mb-2 w-full text-center left-0 text-xs text-gray-100">minimum</div>
+</div>
+<div class="max w-1/2 h-32 p-5 bg-red-800 text-white text-5xl relative">12
+    <div class="absolute bottom-0 mb-2 w-full text-center left-0 text-xs text-gray-100">maximum</div>
+</div>
+
+                            </div>
+                           
+
+                            <div class="h-40">
+                                    <canvas id="c-monday"></canvas>
+                            </div>
+                            <script>
+                                const cMon = document.getElementById('c-monday');
+            
+            
+                                const mondayChart = new Chart(cMon, {
+                                    type: 'line',
+                                    data: {
+                                        labels: ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday',],
+                                        datasets: [
+                                            {
+                                                pointRadius: 3,
+                                                borderWidth: 4,
+                                                pointHoverBorderWidth: 10,
+                                                fill: 0,
+                                                label: 'Min',
+                                                data: [1.28, 0.08, 5.59, 6.74, 8.25, 6.84,],
+                                                backgroundColor: '#2c5282',
+                                                borderColor: "#2c5282"
+                                            },
+                                            {
+                                                pointRadius: 3,
+                                                pointHoverBorderWidth: 10,
+                                                borderWidth: 4,
+                                                fill: 0,
+                                                label: 'Max',
+                                                data: [5.95, 5.53, 10.08, 9.65, 11.05, 7.38,],
+                                                backgroundColor: '#9b2c2c',
+                                                borderColor: "#9b2c2c"
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                       maintainAspectRatio: false,
+                                        scales: {
+                                            xAxes: [{
+                                                stacked: true,
+                                                gridLines: {
+                                                    drawBorder: false,
+                                                    display: false
+                                                }, ticks: {
+                                                    display: false
+                                                }
+                                            }],
+                                            yAxes: [
+                                                {
+                                                    stacked: false,
+                                                    ticks: {
+                                                        display: false
+                                                    },
+                                                    gridLines: {
+                                                        drawBorder: false,
+                                                        display: false
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        legend: {
+                                            display: false
+                                        }
+            
+                                    }
+                                });
+            
+                            </script>
+                          </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        </div>
+
+                        
+                        
+             
+    
+                        
+
+                    </div>
+                </div>
+            
+        </section>
+    </div>
+    
 </body>
+
 </html>
