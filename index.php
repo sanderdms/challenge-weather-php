@@ -69,10 +69,8 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
                 <div class="flex flex-wrap -mx-5 mt-10">
 
                 <div class="w-full md:w-1/2 lg:w-2/4 p-7 px-5 mb-10">
-                        <div class="p-10 md:p-6 bg-white text-center shadow-lg">
-                            <h1 class="text-2xl my-2 font-bold leading-tight">Now</h1>
-                            <p>Special card today summary and detail view ⛅ </p>
-                            <div class="minmax flex justify-center my-5">
+                        <div class="bg-white text-center shadow-lg">
+                            <div class="minmax flex flex-wrap justify-center">
                                 <div class="min w-1/2 h-32 p-5 bg-green-800 text-white text-5xl relative"><?=$metrics["min"] ?><sup class="text-lg">°C</sup>
                                     <div class="absolute bottom-0 mb-2 w-full text-center left-0 text-xs text-gray-100">minimum</div>
                                 </div>
@@ -85,14 +83,13 @@ if (isset($_GET['city']) && !empty($_GET['city'])) {
                                 <div class="min w-1/2 h-32 p-5 bg-yellow-800 text-white text-5xl relative"><?=$metrics["min"] ?><sup class="text-lg">°C</sup>
                                     <div class="absolute bottom-0 mb-2 w-full text-center left-0 text-xs text-gray-100">minimum</div>
                                 </div>
-                                <div class="min w-1/2 h-32 p-5 bg-blue-800 text-white text-5xl relative"><?=$metrics["min"] ?><sup class="text-lg">°C</sup>
+                                <div class="min w-1/2 h-32 p-5 bg-purple-800 text-white text-5xl relative"><?=$metrics["min"] ?><sup class="text-lg">°C</sup>
                                     <div class="absolute bottom-0 mb-2 w-full text-center left-0 text-xs text-gray-100">minimum</div>
                                 </div>
                                 <div class="min w-1/2 h-32 p-5 bg-orange-800 text-white text-5xl relative"><?=$metrics["min"] ?><sup class="text-lg">°C</sup>
                                     <div class="absolute bottom-0 mb-2 w-full text-center left-0 text-xs text-gray-100">minimum</div>
                                 </div>
                             </div>
-                        <?php include("hourchart.php") ?>
                         </div>
                     </div>
             
