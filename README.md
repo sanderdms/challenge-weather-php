@@ -2,7 +2,7 @@
 Made by @sanderdms<br>
 Made for educational purpose [@becodeorg](https://github.com/becodeorg)
 
-Original exercise files: [_becode_copy](https://github.com/sanderdms/challenge-weather-app/blob/master/_becode_copy)
+Original exercise files: [_becode_copy](https://github.com/sanderdms/challenge-weather-php/blob/master/_becode_copy)
 
 # Preview
 ![screenshot](screenshot.png)
