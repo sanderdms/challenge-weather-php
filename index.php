@@ -1,4 +1,7 @@
 <?php
+setlocale(LC_TIME, "nl_BE.UTF8");
+
+
 //@const API_KEY
 require("secrets.php");
 require("functions.php");
