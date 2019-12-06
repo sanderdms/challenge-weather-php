@@ -46,14 +46,20 @@ function addDailyMetrics($daily)
     return $output;
 }
 
-function generateMinMax($fullData)
+function generateMinMax($fullData, $pop=true)
 {
     $output = [
         "min"=>"",
         "max"=>""
     ];
     foreach($fullData as $day => $weather){
+   
+    if($pop)
+    {    
     $metrics = array_pop($weather);
+}else{
+    $metrics = $weather;
+}
     $output["min"] .= $metrics["min"].",";
     $output["max"] .= $metrics["max"].",";
     }
