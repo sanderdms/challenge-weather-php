@@ -10,3 +10,8 @@ Original exercise files: [_becode_copy](https://github.com/sanderdms/challenge-w
 ---
 This repo is for showing my work to fellow students and coaches.
 Published on GitHub for display purpose and to enable remote access and editing.
+
+- Tailwind CSS utility classes
+- Open WeatherMap 5day/3hour API
+- ChartJs
+- PHP
